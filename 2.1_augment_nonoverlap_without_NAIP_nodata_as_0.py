@@ -114,6 +114,7 @@ np.save(save_root+'augmented_data/train_data_aug'+m+'.npy',train_data_aug)
 np.save(save_root+'augmented_data/train_label_aug'+m+'.npy',train_label_aug[:,:,:,np.newaxis])
 
 print("Training data augmentation complete!")
+
 ###### visualization ########
 #    import pdb
 #    pdb.set_trace() 
