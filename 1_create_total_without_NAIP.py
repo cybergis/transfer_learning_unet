@@ -37,7 +37,7 @@ ranges =[
 
 # Update the organized data
 # Order the files according to the name of the files
-data_folder = './organized_data/'
+data_folder = './data/'
 
 #initialize the output
 output = [] 
@@ -86,33 +86,33 @@ output = np.moveaxis(output,0,-1)
 np.save('total_without_NAIP',output)
 print('saved total')
 
-# def generate_mask():
+def generate_mask():
 	
-# 	path = './organized_data/01_CovingtonRiver_020801030302_CURVATURE_nodata.tif'
+	path = './organized_data/01_CovingtonRiver_020801030302_CURVATURE_nodata.tif'
 
-# 	image = im.open(path)
-# 	image_array = np.array(image)
+	image = im.open(path)
+	image_array = np.array(image)
 	
-# 	# image_array = image_array[1:image_array.shape[0]-1,1:image_array.shape[1]-1]
+	# image_array = image_array[1:image_array.shape[0]-1,1:image_array.shape[1]-1]
 	
-# 	print(image_array.shape)
+	print(image_array.shape)
 
-# 	mask = image_array != -9999
-# 	mask.astype(int)
-# 	np.save('mask',mask)
+	mask = image_array != -9999
+	mask.astype(int)
+	np.save('mask',mask)
 
-# generate_mask()
-# print('save mask')
+generate_mask()
+print('save mask')
 
-# def generate_reference():
-# 	path = './organized_data/reference_nodata.tif'
+def generate_reference():
+	path = './organized_data/reference_nodata.tif'
 
-# 	image = im.open(path)
-# 	image_array = np.array(image)	
+	image = im.open(path)
+	image_array = np.array(image)	
 
-# 	image_array[image_array==-9999] = np.nan
+	image_array[image_array==-9999] = np.nan
 	
-# 	np.save('reference_as_None',image_array)
+	np.save('reference_as_None',image_array)
 
-# generate_reference()
-# print('saved reference')
+generate_reference()
+print('saved reference')
