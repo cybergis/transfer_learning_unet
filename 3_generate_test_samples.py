@@ -1,33 +1,43 @@
 import os
 import numpy as np
+import sys
 import copy
 import random
 from datetime import datetime
+
+# total arguments
+n = len(sys.argv)
+if(n < 5):
+	raise Exception("The command must have 4 parameters: \n 1. path to total data \n 2. path to mask file \n 3. path to reference \n 4. path to output folder")
+else:
+	totaldata_path = sys.argv[1]
+	mask_path = sys.argv[2]
+	label_path = sys.argv[3]
+	output_path = sys.argv[4]
 
 # stream/non-stream sample size
 patch_size = 224 #patch size of each sample
 
 #Total data dimension: 13927, 14466
-totaldata = np.load('./Total_data/total.npy')
-mask = np.load('./Total_data/mask.npy')
+totaldata = np.load(totaldata_path)
+mask = np.load(mask_path)
+label = np.load(label_path)
+
 #Add mask 
 totaldata = np.concatenate((totaldata,mask[:,:,np.newaxis]),axis = 2)
-
-label = np.load('./Total_data/reference_nodata_as_0.npy')
 
 print(totaldata.shape)
 print('Completed: Data Loading!')
 
 # buffer size
 buf = 30
-it = 'full'
+
 # Image dimension
 IMG_WIDTH = 224
 IMG_HEIGHT = 224
 
 # moving window size = image_dimension - 2*buffer_size
 mw = IMG_WIDTH - buf*2
-
 
 # Number of trainig channels
 # Adding padding to width and height for moving window 
@@ -68,6 +78,5 @@ for i in range(numr):
         
 print(total.shape)
 # Save the total dataset
-folder_time = datetime.now().strftime("%Y-%m-%d_%I-%M-%S_%p")
-np.save("./train_test_dataset/prediction_data_nodata_as_0"+folder_time+".npy",total)
-print("Testing moving window is generate!")
+np.save(output_path+"/test_data.npy",total)
+print("Test data is generated!")
