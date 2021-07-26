@@ -155,12 +155,12 @@ np.save('./train_test_dataset/without_NAIP/nodata_as_0/train_label.npy',train_la
 training_sample = np.array(training_sample)
 np.save('./train_test_dataset/without_NAIP/nodata_as_0/train_patches_top-left.npy',training_sample)
 
+
 [train_vali_stream,train_vali_stream_label] = generate_samples(totaldata,r,c,label_train_vali,300,"validation")
 [train_vali_nonstream,train_vali_nonstream_label] = generate_samples(totaldata,rn,cn,label_train_vali,300,"validation")
 
 trainvali_data = np.concatenate((train_vali_stream,train_vali_nonstream),axis = 0)
 trainvali_label = np.concatenate((train_vali_stream_label,train_vali_nonstream_label),axis = 0)
-
 
 # Shuffle training and validation samples
 s = np.arange(trainvali_data.shape[0])
