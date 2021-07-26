@@ -5,16 +5,26 @@ import sys
 import numpy as np
 from intervaltree import Interval, IntervalTree
 
+# total arguments
+n = len(sys.argv)
+if(n < 5):
+	raise Exception("The command must have 4 parameters: \n 1. path to total data \n 2. path to mask file \n 3. path to reference \n 4. path to output folder")
+else:
+	totaldata_path = sys.argv[1]
+	mask_path = sys.argv[2]
+	label_path = sys.argv[3]
+	output_path = sys.argv[4]
+
 # stream/non-stream sample size
 # size = 2000 # number of samples 
 patch_size = 224 #patch size of each sample
 
 #Total data dimension: 14406*13867
-totaldata = np.load('./Total_data/total_without_NAIP.npy')
-mask = np.load('./Total_data/mask.npy')
+totaldata = np.load(totaldata_path)
+mask = np.load(mask_path)
 
 totaldata = np.concatenate((totaldata,mask[:,:,np.newaxis]),axis = 2)
-label = np.load('./Total_data/reference_nodata_as_0.npy')
+label = np.load(label_path)
 
 print('Completed: Data Loading!')
 
@@ -150,10 +160,10 @@ train_data = trainvali_data[s]
 train_label = trainvali_label[s]
 
 #Save the trainging samples both data and label
-np.save('./train_test_dataset/without_NAIP/nodata_as_0/train_data.npy',train_data)
-np.save('./train_test_dataset/without_NAIP/nodata_as_0/train_label.npy',train_label[:,:,:,np.newaxis])
+np.save(output_path+'/train_data.npy',train_data)
+np.save(output_path+'/train_label.npy',train_label[:,:,:,np.newaxis])
 training_sample = np.array(training_sample)
-np.save('./train_test_dataset/without_NAIP/nodata_as_0/train_patches_top-left.npy',training_sample)
+np.save(output_path+'/train_patches_top-left.npy',training_sample)
 
 
 [train_vali_stream,train_vali_stream_label] = generate_samples(totaldata,r,c,label_train_vali,300,"validation")
@@ -169,7 +179,7 @@ vali_data = trainvali_data[s]
 vali_label = trainvali_label[s]
 
 #Save the validation samples both data and label
-np.save('./train_test_dataset/without_NAIP/nodata_as_0/vali_data.npy',vali_data)
-np.save('./train_test_dataset/without_NAIP/nodata_as_0/vali_label.npy',vali_label[:,:,:,np.newaxis])
+np.save(output_path+'/vali_data.npy',vali_data)
+np.save(output_path+'/vali_label.npy',vali_label[:,:,:,np.newaxis])
 validation_sample = np.array(validation_sample)
-np.save('./train_test_dataset/without_NAIP/nodata_as_0/vali_patches_top-left.npy',validation_sample)
+np.save(output_path+'/vali_patches_top-left.npy',validation_sample)
