@@ -2,42 +2,64 @@ from PIL import Image as im
 im.MAX_IMAGE_PIXELS = None
 import numpy as np
 import glob
+import sys
 
-# Files' name of all the ionput data
-files = [
-	'01_CovingtonRiver_020801030302_CURVATURE_nodata.tif',
-	'02_CovingtonRiver_020801030302_SLOPE_nodata.tif', 
-	'03_CovingtonRiver_020801030302_OPENESS_nodata.tif',
-	'04_CovingtonRiver_020801030302_DEM_nodata.tif', 
-	'05_CovingtonRiver_020801030302_TPI_21_nodata.tif', 
-	'06_CovingtonRiver_020801030302_INTENSITY_nodata.tif',
-	'07_CovingtonRiver_020801030302_Cov10cell_Geomorphon.tif',  
-	# '08_TPI_CovingtonRiver_020801030302_9_nodata.tif', 
-	'09_TPI_CovingtonRiver_020801030302_3_nodata.tif',
-	#NAIP images are in range 0-255 already
-	# 'NAIP/NAIP2018_RED_edit_nodata.tif',
-	# 'NAIP/NAIP2018_GREEN_edit_nodata.tif',
-	# 'NAIP/NAIP2018_BLUE_edit_nodata.tif',
-	# 'NAIP/NAIP2018_INFARED_edit_nodata.tif' 
-    ]
+# total arguments
+n = len(sys.argv)
 
-#The ranges here are the range of 3SD or 99.7% of all data
-#This is to prevent problem in the normalization process
-ranges =[
-	[-0.28222607489286866,0.28248185206077936], # '01_CovingtonRiver_020801030302_CURVATURE_nodata.tif'
-	[-0.28097646432537005,0.7456170822778501], # '02_CovingtonRiver_020801030302_SLOPE_nodata.tif'
-	[81.4260223726079, 96.2421904790021], # '03_CovingtonRiver_020801030302_OPENESS_nodata.tif'
-	[-207.05215950623995, 938.84507252262], # '04_CovingtonRiver_020801030302_DEM_nodata.tif'
-	[-0.8616536368618285, 0.8618900909336314], # '05_CovingtonRiver_020801030302_TPI_21_nodata.tif'
-	[1.494045913614002, 77.145486958992],# '06_CovingtonRiver_020801030302_INTENSITY_nodata.tif'
-	[3.1338925783175906, 8.81583142566701], # '07_CovingtonRiver_020801030302_Cov10cell_Geomorphon.tif'
-	# [-1.0 , 1.0], # '08_TPI_CovingtonRiver_020801030302_9_nodata.tif'
-	[-0.19840276259099499, 0.198406762590995] # '09_TPI_CovingtonRiver_020801030302_3_nodata.tif'
-	]
+if(sys.argv[1] == "without_NAIP"):
+    # Files' name of all the ionput data
+    files = [
+        '01_CovingtonRiver_020801030302_CURVATURE_nodata.tif',
+        '02_CovingtonRiver_020801030302_SLOPE_nodata.tif', 
+        '03_CovingtonRiver_020801030302_OPENESS_nodata.tif',
+        '04_CovingtonRiver_020801030302_DEM_nodata.tif', 
+        '05_CovingtonRiver_020801030302_TPI_21_nodata.tif', 
+        '06_CovingtonRiver_020801030302_INTENSITY_nodata.tif',
+        '07_CovingtonRiver_020801030302_Cov10cell_Geomorphon.tif', 
+        '09_TPI_CovingtonRiver_020801030302_3_nodata.tif',
+        ]
+
+    #The ranges here are the range of 3SD or 99.7% of all data
+    #This is to prevent problem in the normalization process
+    ranges =[
+        [-0.28222607489286866,0.28248185206077936], # '01_CovingtonRiver_020801030302_CURVATURE_nodata.tif'
+        [-0.28097646432537005,0.7456170822778501], # '02_CovingtonRiver_020801030302_SLOPE_nodata.tif'
+        [81.4260223726079, 96.2421904790021], # '03_CovingtonRiver_020801030302_OPENESS_nodata.tif'
+        [-207.05215950623995, 938.84507252262], # '04_CovingtonRiver_020801030302_DEM_nodata.tif'
+        [-0.8616536368618285, 0.8618900909336314], # '05_CovingtonRiver_020801030302_TPI_21_nodata.tif'
+        [1.494045913614002, 77.145486958992],# '06_CovingtonRiver_020801030302_INTENSITY_nodata.tif'
+        [3.1338925783175906, 8.81583142566701], # '07_CovingtonRiver_020801030302_Cov10cell_Geomorphon.tif'
+        [-0.19840276259099499, 0.198406762590995] # '09_TPI_CovingtonRiver_020801030302_3_nodata.tif'
+        ]
+
+if(sys.argv[1] == "with_NAIP"):
+    # Files' name of all the ionput data
+    files = [
+        '01_CovingtonRiver_020801030302_CURVATURE_nodata.tif',
+        '04_CovingtonRiver_020801030302_DEM_nodata.tif', 
+        '05_CovingtonRiver_020801030302_TPI_21_nodata.tif', 
+        '07_CovingtonRiver_020801030302_Cov10cell_Geomorphon.tif',  
+        #NAIP images are in range 0-255 already
+        'NAIP/NAIP2018_RED_edit_nodata.tif',
+        'NAIP/NAIP2018_GREEN_edit_nodata.tif',
+        'NAIP/NAIP2018_BLUE_edit_nodata.tif',
+        'NAIP/NAIP2018_INFARED_edit_nodata.tif' 
+        ]
+
+    #The ranges here are the range of 3SD or 99.7% of all data
+    #This is to prevent problem in the normalization process
+    ranges =[
+        [-0.28222607489286866,0.28248185206077936], # '01_CovingtonRiver_020801030302_CURVATURE_nodata.tif'
+        [-207.05215950623995, 938.84507252262], # '04_CovingtonRiver_020801030302_DEM_nodata.tif'
+        [-0.8616536368618285, 0.8618900909336314], # '05_CovingtonRiver_020801030302_TPI_21_nodata.tif'
+        [3.1338925783175906, 8.81583142566701], # '07_CovingtonRiver_020801030302_Cov10cell_Geomorphon.tif'
+        ]
+
 
 # Update the organized data
 # Order the files according to the name of the files
-data_folder = './data/'
+data_folder = './organized_data/'
 
 #initialize the output
 output = [] 
