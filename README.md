@@ -4,7 +4,7 @@ This is the repository which store the scritps and notebooks for Transfer Learni
 
 ## Folder  
 **data:** raw data for Total data generation  
-**Total_data:** total data generated from the script 1_create_total_without_NAIP.py  
+**Total_data:** total data generated from the script 1_create_total_dataset.py  
 
 ## Scripts 
 1_create_total_dataset.py : run this script to create total dataset  
@@ -19,3 +19,6 @@ This is the repository which store the scritps and notebooks for Transfer Learni
 
 ## Usage
 
+1_create_total_dataset.py <data_folder> <"with_NAIP" or "without_NAIP">
+
+2_generate_training_validation_samples.py <total_data_path> <mask_path> <label_path> <output_folder_path>
