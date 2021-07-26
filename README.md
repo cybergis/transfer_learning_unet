@@ -24,3 +24,15 @@ This is the repository which store the scritps and notebooks for Transfer Learni
 > python 2_generate_training_validation_samples.py <total_data_path> <mask_path> <label_path> <output_folder_path>
 
 > python 3_generate_test_samples.py <total_data_path> <mask_path> <label_path> <output_folder_path>
+
+> python 4_1_experiment_1.py <sample_folder_path> <"with_NAIP" or "without_NAIP">
+
+> python 4_2_experiment_2.py <sample_folder_path> <"first_4" or "last_4">
+
+> python 4_3_experiment_3.py <sample_folder_path>
+
+> python 5_predict.py <model_path> <mask_path> <label_path> <output_folder_path>
+
+> python 6_organize_prediction_result.py <prediction_resutls_npy> <mask_path> <label_path> <output_folder_path>
+
+> python 7_evaluate.py <prediction_resutls_path_> <mask_path> <label_path>
