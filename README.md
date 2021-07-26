@@ -21,6 +21,6 @@ This is the repository which store the scritps and notebooks for Transfer Learni
 
 > python 1_create_total_dataset.py <data_folder> <"with_NAIP" or "without_NAIP">
 
-> python2_generate_training_validation_samples.py <total_data_path> <mask_path> <label_path> <output_folder_path>
+> python 2_generate_training_validation_samples.py <total_data_path> <mask_path> <label_path> <output_folder_path>
 
-> python3_generate_test_samples.py <total_data_path> <mask_path> <label_path> <output_folder_path>
+> python 3_generate_test_samples.py <total_data_path> <mask_path> <label_path> <output_folder_path>
