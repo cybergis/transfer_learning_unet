@@ -16,6 +16,7 @@ Streamline network delineation plays a vital role in various scientific discipli
 ## Folder  
 **data:** raw data for Total data generation  
 **Total_data:** total data generated from the script 1_create_total_dataset.py  
+**Note:** datasets are on Keeling at "/data/cigi/common/nj7/Transfer_learning_streamline_detection/"
 
 ## Scripts 
 1_create_total_dataset.py : run this script to create total dataset  
